@@ -14,9 +14,12 @@ async function main() {
   //   process.env.PRIVATE_KEY_PASSWORD
   // );
   // wallet = wallet.connect(provider);
-  const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8")
+  const abi = fs.readFileSync(
+    "./contracts_MomentumChain_sol_MomentumChain.abi",
+    "utf8"
+  )
   const binary = fs.readFileSync(
-    "./SimpleStorage_sol_SimpleStorage.bin",
+    "./contracts_MomentumChain_sol_MomentumChain.bin",
     "utf8"
   )
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
@@ -54,13 +57,13 @@ async function main() {
   // const sentTxResponse = await wallet.sendTransaction(tx);
   // console.log(resp)
 
-  let currentFavoriteNumber = await contract.retrieve()
-  console.log(`Current Favorite Number: ${currentFavoriteNumber}`)
-  console.log("Updating favorite number...")
-  let transactionResponse = await contract.store(7)
-  let transactionReceipt = await transactionResponse.wait()
-  currentFavoriteNumber = await contract.retrieve()
-  console.log(`New Favorite Number: ${currentFavoriteNumber}`)
+  // let currentFavoriteNumber = await contract.retrieve()
+  // console.log(`Current Favorite Number: ${currentFavoriteNumber}`)
+  // console.log("Updating favorite number...")
+  // let transactionResponse = await contract.store(7)
+  // let transactionReceipt = await transactionResponse.wait()
+  // currentFavoriteNumber = await contract.retrieve()
+  // console.log(`New Favorite Number: ${currentFavoriteNumber}`)
 }
 
 main()
