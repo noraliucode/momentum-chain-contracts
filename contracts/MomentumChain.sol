@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
 
-contract MomentumChain {
+// Open Zeppelin libraries for controlling upgradability and access.
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+
+contract MomentumChain is Initializable {
   struct Record {
     uint256 timestamp;
     string link;
@@ -19,7 +24,7 @@ contract MomentumChain {
   event Distribute(address receiver, uint256 amount);
   event Sent(address to, uint256 amount);
 
-  constructor() {
+  function initialize() public initializer {
     challenger = msg.sender;
     endDate = block.timestamp + 21 days;
   }
