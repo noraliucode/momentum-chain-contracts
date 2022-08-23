@@ -3,6 +3,7 @@ require("hardhat-gas-reporter")
 require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("solidity-coverage")
+require("@openzeppelin/hardhat-upgrades")
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 /**
