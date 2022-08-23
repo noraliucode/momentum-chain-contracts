@@ -1,11 +1,17 @@
 // imports
-const { ethers, run: _run, network } = require("hardhat")
+
+const { ethers, run: _run, network, upgrades } = require("hardhat")
 
 // async main
 async function main() {
   const MomentumChainFactory = await ethers.getContractFactory("MomentumChain")
   console.log("Deploying contract...")
-  const momentumChain = await MomentumChainFactory.deploy()
+  // const momentumChain = await MomentumChainFactory.deploy()
+  const momentumChainContract = await ethers.getContractFactory("MomentumChain")
+  const momentumChain = await upgrades.deployProxy(momentumChainContract, {
+    // initializer: "initialize",
+    kind: "uups",
+  })
   await momentumChain.deployed()
   console.log(`Deployed contract to: ${momentumChain.address}`)
   // what happens when we deploy to our hardhat network?
